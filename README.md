@@ -26,7 +26,7 @@ Pour définir une matrice il faut utiliser la syntaxe `<nom>: matrix([a, b, ...]
 
 Dans la suite, soient *m*, *m1* et *m2* trois matrices quelconques.
 
-### Opérations sur les matrices et les scalaires
+### Opérations sur des matrices et des scalaires
 
 - addition de *m1* à *m2* : `addition m1,m2`
 - soustraction de *m2* de *m1* : `sub m1,m2`
