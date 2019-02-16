@@ -9,10 +9,17 @@
 int runVar(char * line, Vars vs){
 	int dp = rechercheChar(line, ':');
 	int par = rechercheChar(line, '(');
-	int declarVar;
+	int declarVar = 0;
 	char ** tab1;
 	char ** tab;
 	char * nom;
+	size_t length = strlen(line);
+
+	if(length < 2) {
+		return -1;
+	}
+
+	line[length - 1] = '\0';
 
 	if(par + dp){
 		line = epurer(line);
@@ -33,7 +40,7 @@ int runVar(char * line, Vars vs){
 	else
 		tab = split(line, " ");
 
-	if(!strcmp(tab[0], "quit\n") || !strcmp(tab[0], "quit")){
+	if(!strcmp(tab[0], "quit")){
 		free(tab);
 		return 1;	
 	}
@@ -53,7 +60,7 @@ int runVar(char * line, Vars vs){
 		int success;
 		success = speedtest(tab[1], atoi(tab[2]), atoi(tab[3]), atoi(tab[4]), atoi(tab[5]));
 		if(!success)
-			printf("\tspeedtest effectué %d\n", success);
+			printf("\tspeedtest effectué\n");
 		else
 			printf("\techec du speedtest\n");
 		free(tab);
@@ -65,7 +72,7 @@ int runVar(char * line, Vars vs){
 		char ** lignes = split(tab[1], "[");
 		if(lignes[0] == NULL) return -1;
 		int virgules = compteur(lignes[0], ',');
-		if (crochet == 1) virgules ++;
+		virgules ++;
 		Matrix m = createMatrix(vs, lignes, crochet, virgules);
 		displayMatrix(m);
 		if(declarVar){
@@ -294,7 +301,6 @@ int runVar(char * line, Vars vs){
 }
 
 int main(int argc, char **argv) {
-	struct stat buf;
 	FILE *f_in;
 	int file = 0;
 	if(argc == 2){

@@ -83,6 +83,8 @@ E norme(const Matrix V)
 
 		return (sqrt(result));
 	}
+
+	return FLT_MAX;
 }
 
 /**
@@ -442,7 +444,7 @@ void gauss(Matrix A, Matrix B, Matrix X)
  **/
 int zero_row(Matrix A, int line)
 {
-	int i, j, k;
+	int j;
 
 	for(j = 0; j < A->ncols; j++)
 	{
@@ -568,13 +570,15 @@ Matrix inverse(Matrix A)
  **/
 struct LEstimateCouple least_estimate(Matrix S)
 {
+	struct LEstimateCouple r;
+
 	if( S->ncols != 2 )
 	{
 		printf("Les dimensions de la matrice sont incorrectes\n");
-		return;
+		return r;
 	}
 
-	int i, j, n = S->nrows;
+	int i, n = S->nrows;
 
 	E moyX = 0.0, moyY = 0.0;
 
@@ -635,8 +639,6 @@ struct LEstimateCouple least_estimate(Matrix S)
 	}
 	
 	wait(NULL);
-	
-	struct LEstimateCouple r;
 	
 	r.coeff = coef;
 	r.residus = residus;
@@ -1043,7 +1045,7 @@ int speedtest(char * cmd, int taille_min, int taille_max, int pas, int sec)
 				
 				start = clock();
 				
-				int det = determinant(m);
+				determinant(m);
 				
 				end = clock();
 				
@@ -1192,7 +1194,7 @@ int speedtest(char * cmd, int taille_min, int taille_max, int pas, int sec)
 				
 				start = clock();
 				
-				struct LEstimateCouple r = least_estimate(m);
+				least_estimate(m);
 				
 				end = clock();
 				
@@ -1292,7 +1294,7 @@ int speedtest(char * cmd, int taille_min, int taille_max, int pas, int sec)
 				
 				start = clock();
 				
-				E nv = norme(v);
+				norme(v);
 				
 				end = clock();
 				
@@ -1341,7 +1343,7 @@ int speedtest(char * cmd, int taille_min, int taille_max, int pas, int sec)
 				
 				start = clock();
 				
-				int r = rank(m);
+				rank(m);
 				
 				end = clock();
 				

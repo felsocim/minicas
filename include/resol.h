@@ -5,14 +5,16 @@
  **/ 
 #pragma once
 
+#include <string.h>
+#include <float.h>
 #include "matrix.h"
 
 //Fichier temporarie de sauvegarde des résultats de speedtest
-#define SPTFILE "tmp/speedtest-results.txt"
+#define SPTFILE "speedtest-results.txt"
 
 //Fichier temporarie de sauvegarde des résultats de 'least_estimate'
-#define LESTFILE "tmp/lestimate-results.txt"
-#define ALPHABETA "tmp/alpha-beta.txt"
+#define LESTFILE "lestimate-results.txt"
+#define ALPHABETA "alpha-beta.txt"
 
 //Définition du type de retour pour la fonction 'eigenval' qui calcule 
 //la valeur et le vecteur propre
